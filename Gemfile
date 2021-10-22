@@ -19,6 +19,7 @@ gem "slim-rails"
 gem "bulma"
 gem "httparty"
 gem "nokogiri"
+gem "figaro"
 
 
 # Use Redis adapter to run Action Cable in production
