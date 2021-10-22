@@ -43,6 +43,7 @@ GEM
     arel (8.0.0)
     bindex (0.8.1)
     builder (3.2.4)
+    bulma (0.1.0)
     byebug (11.0.1)
     capybara (3.15.1)
       addressable
@@ -174,6 +175,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bulma
   byebug
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
