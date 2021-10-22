@@ -3,7 +3,7 @@ class Article < ApplicationRecord
 
     validates :url, presence: true, uniqueness: true
     validates :url, format: URI::regexp(%w[http https])
-    validates :is_wikipedia_url
+    validate :is_wikipedia_url
 
     def is_wikipedia_url
         uri = URI.parse(url.downcase)
