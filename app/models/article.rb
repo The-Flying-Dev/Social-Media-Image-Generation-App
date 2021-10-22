@@ -12,4 +12,25 @@ class Article < ApplicationRecord
             errors.add(:url, "must be an article on wikipedia.org")
         end
     end
+
+  before_save :grab_html
+
+    def grab_html
+      response = HTTParty.get(self.url)
+      return if response.code != 200
+      self.html = response.body
+    end
+
+    def title
+      Nokogiri::HTML.parse(self.html).at('h1').text
+    end
+
+    def image
+      "https:" + Nokogiri::HTML.parse(self.html).at('.infobox img, .thumb img')['srcset'].split('1.5, ').last.split(' 2x').first
+    end
+
+    def first_sentence
+      Nokogiri::HTML.parse(self.html).at('.mw-parser-output > p:not(.mw-empty-elt)').text.split(".").first.gsub(/\(.*\)/, "").gsub(" ,",",")
+    end
+    
 end
